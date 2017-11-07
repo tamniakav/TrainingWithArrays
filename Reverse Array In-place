@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P03.ReverseArrayIn_place
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] arrText = Console.ReadLine().Split(' ').ToArray();
+
+            int left = 0;
+            int right = arrText.Length - 1;
+
+            while (left < right)
+            {
+                string holdWord = arrText[left];
+                arrText[left] = arrText[right];
+                arrText[right] = holdWord;
+
+
+                left++;
+                right--;
+            }
+
+            Console.WriteLine(string.Join(" ", arrText));
+        }
+    }
+}
