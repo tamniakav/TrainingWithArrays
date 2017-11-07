@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Smallest_Element_in_Array
+{
+    class SmallestElementInArray
+    {
+        static void Main(string[] args)
+        {
+            string[] arrText = Console.ReadLine().Split(' ').ToArray();
+            int length = arrText.Length;
+            int[] numbers = new int[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                numbers[i] = int.Parse(arrText[i]);
+            }
+
+            int smallestNum = int.MaxValue;
+
+            for (int i = 0; i < length; i++)
+            {
+                if (numbers[i] < smallestNum)
+                {
+                    smallestNum = numbers[i];
+                }
+            }
+
+            Console.WriteLine(smallestNum);
+        }
+    }
+}
