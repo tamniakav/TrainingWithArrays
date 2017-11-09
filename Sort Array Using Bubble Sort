@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P04SortArrayUsingBubbleSort
+{
+    class SortArrayUsingBubbleSort
+    {
+        static void Main(string[] args)
+        {
+            int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+            BublleSort(ref numbers);
+
+            Console.WriteLine(string.Join(" ", numbers));
+        }
+
+        static void BublleSort(ref int[] numbers)
+        {
+            bool isSort = false;
+
+            do
+            {
+                isSort = false;
+                for (int i = 1; i < numbers.Length; i++)
+                {
+                    if (numbers[i] < numbers[i - 1])
+                    {
+                        int num = numbers[i];
+                        numbers[i] = numbers[i - 1];
+                        numbers[i - 1] = num;
+
+                        isSort = true;
+                    }
+
+                }
+            } while (isSort);
+
+
+        }
+
+
+    }
+}
