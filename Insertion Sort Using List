@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P06.InsertionSortUsingList
+{
+    class InsertionSortUsingList
+    {
+        static void Main(string[] args)
+        {
+            List<int> list = Console.ReadLine().Split().Select(int.Parse).ToList();
+
+            list = Sorting(list);
+
+            Console.WriteLine(string.Join(" ", list));
+        }
+
+        static List<int> Sorting(List<int> list)
+        {
+            List<int> newList = new List<int>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                int num = list[i];
+                bool isRotate = false;
+
+                for (int j = 0; j < newList.Count; j++)
+                {
+                    int secondNum = newList[j];
+
+                    if (num < secondNum)
+                    {
+                        isRotate = true;
+                        newList.Insert(j, num);
+                        break;
+                    }
+
+                }
+
+                if (!isRotate)
+                {
+                    newList.Add(num);
+                }
+
+            }
+
+            return newList;
+        }
+    }
+}
