@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Po1._.ShootListElements
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string command = Console.ReadLine();
+            List<int> list = new List<int>();
+            int lastKilld = 0;
+
+            while (command != "stop")
+            {
+                if (command == "bang")
+                {
+                    if (list.Count == 0)
+                    {
+                        Console.WriteLine($"nobody left to shoot! last one was {lastKilld}");
+                        return;
+                    }
+
+                    int sum = list.Sum();
+                    int length = list.Count;
+                    double average = list.Average();
+
+                    for (int i = 0; i < length; i++)
+                    {
+                        int n = list[i];
+                        if (n <= average)
+                        {
+                            lastKilld = list[i];
+                            list.RemoveAt(i);
+
+                            break;
+                        }
+                    }
+                    Console.WriteLine($"shot {lastKilld}");
+
+                    if (list.Count > 0)
+                    {
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            int m = list[i];
+                            m--;
+                            list[i] = m;
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    int num = int.Parse(command);
+                    list.Insert(0, num);
+                }
+
+                command = Console.ReadLine();
+            }
+
+            if (list.Count == 0)
+            {
+                Console.WriteLine($"you shot them all. last one was {lastKilld}");
+            }
+            else
+            {
+                Console.WriteLine($"survivors: {string.Join(" ", list)}");
+            }
+        }
+    }
+}
