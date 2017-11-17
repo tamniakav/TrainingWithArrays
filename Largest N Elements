@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P07.LargestNElements
+{
+    class LargestNElements
+    {
+        static void Main(string[] args)
+        {
+            List<int> list = Console.ReadLine().Split().Select(int.Parse).ToList();
+            int n = int.Parse(Console.ReadLine());
+
+            int[] arr = SortedNums(list, n);
+
+            Console.WriteLine(string.Join(" ", arr));
+        }
+
+        static int[] SortedNums(List<int> list, int n)
+        {
+            int[] sortedArr = new int[n];
+            List<int> sortedList = new List<int>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                int firstNum = list[i];
+                bool isReversed = false;
+                for (int j = 0; j < sortedList.Count; j++)
+                {
+                    int secondNum = sortedList[j];
+
+                    if (firstNum > secondNum)
+                    {
+                        sortedList.Insert(j, firstNum);
+                        isReversed = true;
+                        break;
+                    }
+                }
+                if (!isReversed)
+                {
+                    sortedList.Insert(i, firstNum);
+                }
+            }
+
+            for (int i = 0; i < sortedArr.Length; i++)
+            {
+                sortedArr[i] = sortedList[i];
+            }
+            return sortedArr;
+        }
+    }
+}
