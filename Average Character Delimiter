@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P02._.AverageCharacterDelimiter
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] strArr = Console.ReadLine().Split();
+            int totalSum = 0;
+            int count = 0;
+
+            for (int i = 0; i < strArr.Length; i++)
+            {
+                string word = strArr[i];
+                count += word.Length;
+                if (word.Length > 1)
+                {
+                    int sum = TakeAChar(word);
+                    totalSum += sum;
+                }
+                else
+                {
+                    var chr = strArr[i].ToCharArray();
+                    int numOfChar = chr[0];
+                    totalSum += numOfChar;
+                }
+            }
+
+            int numOfNewChar = totalSum / count;
+            char delimiter = (char)numOfNewChar;
+            string newDelimiter = delimiter.ToString();
+            newDelimiter = newDelimiter.ToUpper();
+
+            Console.WriteLine(string.Join(newDelimiter, strArr));
+        }
+
+        static int TakeAChar(string w)
+        {
+            char[] arr = new char[w.Length];
+            for (int i = 0; i < w.Length; i++)
+            {
+                arr[i] = w.ElementAt(i);
+            }
+
+            int charNum = 0;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                char ch = arr[i];
+                charNum += ch;
+            }
+            return charNum;
+        }
+    }
+}
